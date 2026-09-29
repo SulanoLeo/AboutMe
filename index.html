@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="SEO Specialist, Web Developer & AI Automation Engineer — Portfolio">
+<title>About Me | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;overflow-x:hidden}
+body{background:#080808;color:#fff;font-family:'DM Sans',sans-serif}
+::selection{background:#8b000030;color:#c0392b}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#080808}
+::-webkit-scrollbar-thumb{background:#1e1e1e;border-radius:2px}
+
+/* grid background */
+.grid-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(139,0,0,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(139,0,0,.04) 1px,transparent 1px);
+  
+}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('images/hero.png');
+  background-size:cover;
+  background-position:center right;
+  background-repeat:no-repeat;
+}
+
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    to right,
+    #080808 0%,
+    #080808 35%,
+    rgba(8,8,8,0.88) 48%,
+    rgba(8,8,8,0.3) 68%,
+    rgba(8,8,8,0.05) 100%
+  );
+}
+
+.hero-bottom{
+  position:absolute;bottom:0;left:0;right:0;height:160px;z-index:2;
+  background:linear-gradient(to top,#080808,transparent);
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;z-index:3;
+  width:100%;max-width:960px;
+  margin:0 auto;
+  padding:140px 48px 100px;
+}
+
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;animation:fadeUp .6s ease both}
+.eyebrow-line{width:24px;height:1px;background:#8b0000}
+.eyebrow-text{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#8b0000;font-weight:600}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,5.5vw,78px);
+  font-weight:800;line-height:1.05;
+  margin-bottom:24px;max-width:540px;
+  animation:fadeUp .7s .1s ease both;
+}
+h1 em{color:#c0392b;font-style:normal}
+
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;animation:fadeUp .7s .22s ease both}
+.role-pill{
+  padding:7px 18px;border-radius:100px;font-size:13px;
+  border:1px solid rgba(255,255,255,0.13);
+  color:rgba(255,255,255,0.55);
+  background:rgba(0,0,0,0.25);
+  backdrop-filter:blur(6px);
+}
+
+.intro{max-width:500px;color:rgba(255,255,255,0.5);font-size:15px;line-height:1.8;margin-bottom:14px;animation:fadeUp .7s .32s ease both}
+.intro2{max-width:500px;color:rgba(255,255,255,0.3);font-size:14px;line-height:1.8;animation:fadeUp .7s .42s ease both}
+
+.scroll-hint{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:52px;animation:fadeUp .7s .58s ease both}
+.scroll-hint span{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,0.18)}
+.scroll-line{width:1px;height:36px;background:linear-gradient(rgba(255,255,255,0.15),transparent);animation:pulse 1.8s ease-in-out infinite}
+
+/* ── SHARED SECTION STYLES ── */
+.wrap{position:relative;padding:80px 48px;max-width:960px;margin:0 auto;z-index:1}
+.sec-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#8b0000;font-weight:600;margin-bottom:12px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#fff;line-height:1.15}
+.sec-div{margin-top:16px;height:1px;width:48px;background:linear-gradient(90deg,#8b0000,transparent);margin-bottom:46px}
+.divider{border-top:1px solid #111}
+.divider-faint{border-top:1px solid #0f0f0f}
+
+/* ── EXPERTISE CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{padding:24px;border-radius:16px;border:1px solid #1a1a1a;background:#0d0d0d;transition:border-color .3s,transform .3s;cursor:default}
+.card:hover{border-color:rgba(139,0,0,.35);transform:translateY(-3px)}
+.ci{width:36px;height:36px;border-radius:10px;background:rgba(139,0,0,.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.ci svg{width:16px;height:16px;stroke:#c0392b;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ct{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:14px}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.card li{font-size:12px;color:#555;line-height:1.6;display:flex;align-items:flex-start;gap:8px}
+.card li::before{content:'';width:4px;height:4px;border-radius:50%;background:#8b0000;flex-shrink:0;margin-top:6px}
+
+/* ── TOOLS ── */
+.tstack{display:flex;flex-direction:column;gap:30px}
+.tg-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#2a2a2a;font-weight:500;margin-bottom:10px}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.badge{padding:6px 14px;border-radius:100px;font-size:11px;font-weight:500;border:1px solid #222;background:#111;color:#888;transition:all .25s;cursor:default}
+.badge:hover{border-color:rgba(139,0,0,.5);color:#c0392b}
+.badge-red{padding:6px 14px;border-radius:100px;font-size:11px;font-weight:500;border:1px solid rgba(139,0,0,.28);background:rgba(139,0,0,.07);color:#c0392b;transition:all .25s;cursor:default}
+.badge-red:hover{border-color:rgba(139,0,0,.6);background:rgba(139,0,0,.12)}
+
+/* ── STRENGTHS ── */
+.slist{display:flex;flex-direction:column}
+.srow{display:flex;align-items:flex-start;gap:20px;padding:18px 0;border-bottom:1px solid #111;cursor:default}
+.srow:last-child{border-bottom:none}
+.snum{font-family:'DM Mono',monospace;font-size:10px;color:#222;flex-shrink:0;padding-top:2px;transition:color .3s}
+.srow:hover .snum{color:#8b0000}
+.stxt{font-size:13px;color:#404040;line-height:1.7;transition:color .3s}
+.srow:hover .stxt{color:#666}
+
+/* ── PROJECTS ── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.pcard{padding:24px;border-radius:16px;border:1px solid #141414;background:#0a0a0a;position:relative;overflow:hidden;transition:transform .3s;cursor:default}
+.pcard:hover{transform:scale(1.01)}
+.pcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,0,0,.04),transparent);opacity:0;transition:opacity .4s}
+.pcard:hover::before{opacity:1}
+.pnum{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8b0000;opacity:.6;font-weight:500}
+.ptitle{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;margin:8px 0 14px}
+.pcard ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pcard li{font-size:12px;color:#444;line-height:1.6;display:flex;align-items:flex-start;gap:8px}
+.pcard li::before{content:'';width:4px;height:4px;border-radius:50%;background:#8b0000;opacity:.5;flex-shrink:0;margin-top:6px}
+
+/* ── APPROACH ── */
+.agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.acard{padding:22px;border-radius:16px;border:1px solid #141414;background:#090909;position:relative;transition:transform .3s;cursor:default}
+.acard:hover{transform:translateY(-4px)}
+.astep{font-family:'DM Mono',monospace;font-size:10px;color:#1e1e1e;position:absolute;top:14px;right:14px;transition:color .3s}
+.acard:hover .astep{color:rgba(139,0,0,.3)}
+.aicon{width:32px;height:32px;border-radius:10px;background:rgba(139,0,0,.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.aicon svg{width:14px;height:14px;stroke:#c0392b;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.alabel{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:4px}
+.adetail{font-size:11px;color:#333;line-height:1.6}
+
+/* ── FOOTER ── */
+footer{padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:960px;margin:0 auto}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.25)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .hero-content{padding:100px 24px 80px}
+  .wrap{padding:60px 24px}
+  .hero-bg{background-position:80% center}
+  .hero-overlay{background:linear-gradient(to right,rgba(8,8,8,0.97) 0%,rgba(8,8,8,0.92) 50%,rgba(8,8,8,0.5) 100%)}
+  footer{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-bottom"></div>
+  <div class="hero-content">
+    <div class="eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Portfolio</span>
+    </div>
+    <h1>About <em>Me</em></h1>
+    <div class="roles">
+      <span class="role-pill">SEO Specialist</span>
+      <span class="role-pill">Web Developer</span>
+      <span class="role-pill">AI Automation Engineer</span>
+    </div>
+    <p class="intro">I'm a results-driven digital professional with a strong foundation in SEO, web development, and AI-powered automation. I specialize in improving website visibility, optimizing performance, and building systems that streamline workflows and increase efficiency.</p>
+    <p class="intro2">With hands-on experience across On-Page, Off-Page, and Technical SEO, combined with development skills, I bridge the gap between marketing and engineering — ensuring strategies are not just planned, but properly executed.</p>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERTISE ── -->
+<div class="divider"></div>
+<div class="wrap">
+  <p class="sec-label">What I Do</p>
+  <h2 class="sec-title">Core Expertise</h2>
+  <div class="sec-div"></div>
+  <div class="cards">
+    <div class="card">
+      <div class="ci"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div class="ct">Search Engine Optimization</div>
+      <ul><li>On-Page SEO — content optimization, keyword strategy, internal linking</li><li>Off-Page SEO — link building, outreach, authority growth</li><li>Technical SEO — site audits, crawlability, indexing, Core Web Vitals</li><li>Website health monitoring and SEO scoring</li></ul>
+    </div>
+    <div class="card">
+      <div class="ci"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div class="ct">Web Development</div>
+      <ul><li>Junior / Assistant Web Developer</li><li>WordPress development and customization</li><li>Page builder optimization (performance + UX)</li><li>Understands JavaScript &amp; PHP — builds with Claude / ChatGPT assistance</li><li>Google Apps Script for Google Sheets automation</li></ul>
+    </div>
+    <div class="card">
+      <div class="ci"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+      <div class="ct">Link Building</div>
+      <ul><li>Outreach strategy and execution</li><li>Backlink acquisition and tracking</li><li>Competitor backlink analysis</li></ul>
+    </div>
+    <div class="card">
+      <div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <div class="ct">AI Automation</div>
+      <ul><li>Workflow automation using AI tools</li><li>Process optimization for marketing and operations</li><li>Building internal tools for SEO monitoring &amp; dashboards</li></ul>
+    </div>
+    <div class="card">
+      <div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <div class="ct">Web Design</div>
+      <ul><li>Midget (Minimalist) Web Design approach</li><li>Conversion-focused UI/UX</li><li>Performance-first design thinking</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOOLS ── -->
+<div class="divider-faint"></div>
+<div class="wrap">
+  <p class="sec-label">Tech Stack</p>
+  <h2 class="sec-title">Tools &amp; Technologies</h2>
+  <div class="sec-div"></div>
+  <div class="tstack">
+    <div><div class="tg-label">Design &amp; Content</div><div class="badges"><span class="badge">Photoshop</span><span class="badge">Canva</span></div></div>
+    <div><div class="tg-label">Web Development</div><div class="badges"><span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript*</span><span class="badge">PHP*</span><span class="badge">WordPress</span><span class="badge">Divi Builder</span><span class="badge">Elementor</span><span class="badge">VS Code</span><span class="badge">GitHub</span><span class="badge-red">VS Code + Claude</span><span class="badge-red">Apps Script</span></div><p style="font-size:10px;color:#2a2a2a;margin-top:10px;">* Can read and understand — builds with AI assistance (Claude / ChatGPT)</p></div></div>
+    <div><div class="tg-label">SEO Tools</div><div class="badges"><span class="badge">Screaming Frog</span><span class="badge">Ahrefs</span><span class="badge">Rank Math</span><span class="badge">Yoast SEO</span><span class="badge">Imagify</span><span class="badge">FastPixel</span></div></div>
+    <div><div class="tg-label">Productivity &amp; Data</div><div class="badges"><span class="badge">Excel</span><span class="badge">Google Sheets</span><span class="badge">Google Docs</span></div></div>
+    <div><div class="tg-label">AI &amp; Automation</div><div class="badges"><span class="badge-red">Claude</span><span class="badge-red">ChatGPT</span><span class="badge-red">Gemini</span><span class="badge-red">Antigravity</span></div></div>
+  </div>
+</div>
+
+<!-- ── STRENGTHS ── -->
+<div class="divider-faint"></div>
+<div class="wrap">
+  <p class="sec-label">Why Me</p>
+  <h2 class="sec-title">Key Strengths</h2>
+  <div class="sec-div"></div>
+  <div class="slist">
+    <div class="srow"><span class="snum">01</span><p class="stxt">Strong understanding of technical SEO + development integration</p></div>
+    <div class="srow"><span class="snum">02</span><p class="stxt">Ability to analyze, fix, and optimize website performance</p></div>
+    <div class="srow"><span class="snum">03</span><p class="stxt">Experience in building scalable SEO and automation systems</p></div>
+    <div class="srow"><span class="snum">04</span><p class="stxt">Focused on real business impact, not just metrics</p></div>
+    <div class="srow"><span class="snum">05</span><p class="stxt">Fast learner with a mindset for continuous improvement</p></div>
+  </div>
+</div>
+
+<!-- ── PROJECTS ── -->
+<div class="divider-faint"></div>
+<div class="wrap">
+  <p class="sec-label">Work</p>
+  <h2 class="sec-title">Projects</h2>
+  <div class="sec-div"></div>
+  <div class="pgrid">
+    <div class="pcard"><div class="pnum">Project 01</div><div class="ptitle">SEO Monitoring Dashboard</div><ul><li>Built a system to track website performance, health status, and SEO scores</li><li>Integrated PageSpeed insights and technical audit metrics</li></ul></div>
+    <div class="pcard"><div class="pnum">Project 02</div><div class="ptitle">WordPress Optimization Projects</div><ul><li>Improved site speed and Core Web Vitals</li><li>Implemented structured SEO strategies using Rank Math &amp; Yoast</li></ul></div>
+    <div class="pcard"><div class="pnum">Project 03</div><div class="ptitle">Link Building Campaigns</div><ul><li>Executed outreach campaigns to increase domain authority</li><li>Analyzed competitor backlink profiles and replicated high-value links</li></ul></div>
+  </div>
+</div>
+
+<!-- ── WORK APPROACH ── -->
+<div class="divider-faint"></div>
+<div class="wrap">
+  <p class="sec-label">Process</p>
+  <h2 class="sec-title">Work Approach</h2>
+  <div class="sec-div" style="margin-bottom:16px"></div>
+  <p style="font-size:13px;color:#333;margin-bottom:40px">I combine data, strategy, and execution.</p>
+  <div class="agrid">
+    <div class="acard"><span class="astep">01</span><div class="aicon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="alabel">Analyze</div><div class="adetail">Audit + identify issues</div></div>
+    <div class="acard"><span class="astep">02</span><div class="aicon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="alabel">Optimize</div><div class="adetail">SEO + performance improvements</div></div>
+    <div class="acard"><span class="astep">03</span><div class="aicon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="alabel">Automate</div><div class="adetail">Reduce manual work using AI tools</div></div>
+    <div class="acard"><span class="astep">04</span><div class="aicon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div><div class="alabel">Scale</div><div class="adetail">Build systems that grow with the business</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<footer>
+  <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#222">SEO Specialist · Web Developer · AI Automation Engineer</span>
+  <span style="font-family:'DM Mono',monospace;font-size:10px;color:#1e1e1e">Built with Next.js 14</span>
+</footer>
+</body>
+</html>
