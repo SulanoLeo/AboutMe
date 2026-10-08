@@ -24,6 +24,11 @@ body{background:#080808;color:#fff;font-family:'DM Sans',sans-serif}
 }
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#080808 0%,#080808 35%,rgba(8,8,8,.88) 48%,rgba(8,8,8,.28) 68%,rgba(8,8,8,.04) 100%)}
 .hero-bottom{position:absolute;bottom:0;left:0;right:0;height:260px;z-index:2;background:linear-gradient(to top,#080808 0%,#080808 20%,transparent 100%);pointer-events:none}
+.hero-nav{position:absolute;top:0;left:0;right:0;z-index:4;max-width:1200px;margin:0 auto;padding:28px 56px;display:flex;justify-content:flex-end}
+.site-nav{display:flex;align-items:center;gap:28px}
+.nav-link{position:relative;padding:4px 0;color:rgba(255,255,255,.65);font-size:13px;text-decoration:none;transition:color .2s}
+.nav-link:hover,.nav-link[aria-current="page"]{color:#fff}
+.nav-link[aria-current="page"]::after{position:absolute;right:0;bottom:-8px;left:0;height:1px;background:#c0392b;content:''}
 .hero-content{position:relative;z-index:3;width:100%;max-width:1200px;margin:0 auto;padding:140px 56px 100px}
 
 .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .6s .05s ease forwards}
@@ -126,13 +131,14 @@ h1 em{color:#c0392b;font-style:normal}
 
 /* Tablet landscape 1024px */
 @media(max-width:1024px){
-  .hero-content,.wrap,.footer{padding-left:40px;padding-right:40px}
+  .hero-content,.wrap,.footer,.hero-nav{padding-left:40px;padding-right:40px}
   .cards{grid-template-columns:repeat(2,1fr)}
   .agrid{grid-template-columns:repeat(2,1fr)}
 }
 
 /* Tablet portrait 768px */
 @media(max-width:768px){
+  .hero-nav{padding:22px 32px}
   .hero-content{padding:120px 32px 80px}
   .wrap{padding:60px 32px}
   .footer{padding:32px 32px}
@@ -150,6 +156,8 @@ h1 em{color:#c0392b;font-style:normal}
 
 /* Mobile 480px */
 @media(max-width:480px){
+  .hero-nav{padding:20px}
+  .site-nav{gap:24px}
   .hero-content{padding:100px 20px 70px}
   .wrap{padding:50px 20px}
   .footer{padding:28px 20px;flex-direction:column;align-items:flex-start;gap:8px}
@@ -174,6 +182,7 @@ h1 em{color:#c0392b;font-style:normal}
 
 /* Very small 360px */
 @media(max-width:360px){
+  .hero-nav{padding:18px 16px}
   .hero-content{padding:90px 16px 60px}
   .wrap{padding:44px 16px}
   .agrid{grid-template-columns:1fr}
@@ -184,10 +193,14 @@ h1 em{color:#c0392b;font-style:normal}
 <body>
 
 <!-- ── HERO ── -->
-<section class="hero">
+<section class="hero" id="me">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-bottom"></div>
+  <nav class="hero-nav site-nav" aria-label="Main navigation">
+    <a class="nav-link" href="index.html#me" aria-current="page">Me</a>
+    <a class="nav-link" href="projects.html">Projects</a>
+  </nav>
   <div class="hero-content">
     <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Portfolio</span></div>
     <h1>About <em>Me</em></h1>
