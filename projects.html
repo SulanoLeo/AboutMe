@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Selected SEO, web development, and automation projects by Leo Sulano.">
+<title>Projects | Leo Sulano</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#080808;--surface:#0d0d0d;--surface-raised:#111;--line:#222;--text:#f2f2f0;--muted:#aaa;--subtle:#777;--accent:#c0392b;--accent-soft:rgba(192,57,43,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-width:320px;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}
+a{color:inherit}
+.site-header{max-width:1320px;margin:0 auto;padding:28px 56px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #151515}
+.brand{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;text-decoration:none}
+.back-link{display:inline-flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;text-decoration:none;transition:color .2s}
+.back-link:hover{color:#fff}
+.back-arrow{color:var(--accent);font-size:18px;line-height:1}
+main{max-width:1320px;margin:0 auto;padding:84px 56px 100px}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,360px);align-items:end;gap:36px;margin-bottom:42px}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px;color:var(--accent);font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--accent)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,72px);line-height:1.05;font-weight:800}
+.intro-copy{max-width:340px;color:#aaa;font-size:14px;line-height:1.8}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;border-top:1px solid #222;border-bottom:1px solid #222;margin-bottom:30px}
+.filter-list{display:flex;flex-wrap:wrap;gap:8px}
+.filter-button{appearance:none;border:1px solid #292929;border-radius:999px;padding:8px 15px;background:transparent;color:#aaa;font:500 12px 'DM Sans',sans-serif;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.filter-button:hover{border-color:#777;color:#fff}
+.filter-button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:#f0aaa3}
+.result-count{flex-shrink:0;color:#777;font:11px 'DM Mono',monospace}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.project-card{min-width:0;overflow:hidden;border:1px solid #202020;border-radius:14px;background:var(--surface);transition:border-color .25s,transform .25s}
+.project-card:hover{transform:translateY(-3px);border-color:#49302d}
+.project-card[hidden]{display:none}
+.media-placeholder{position:relative;display:flex;min-height:220px;aspect-ratio:16/10;align-items:flex-end;justify-content:space-between;overflow:hidden;padding:18px;background:radial-gradient(ellipse at 85% 15%,rgba(192,57,43,.16),transparent 42%),linear-gradient(145deg,#171717,#0b0b0b 64%);border-bottom:1px solid #202020}
+.media-placeholder::before{position:absolute;inset:12px;border:1px solid rgba(255,255,255,.07);content:'';pointer-events:none}
+.media-index,.media-status{position:relative;z-index:1;font:10px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+.media-index{color:#ddd}
+.media-status{color:#999}
+.card-content{padding:23px 23px 25px}
+.project-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.project-number{color:var(--accent);font:10px 'DM Mono',monospace;letter-spacing:.15em;text-transform:uppercase}
+.project-type{color:#888;font-size:11px}
+h2{font-family:'Playfair Display',serif;font-size:22px;line-height:1.25;margin-bottom:12px}
+.project-description{color:#b5b5b5;font-size:13px;line-height:1.75}
+.tag-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:19px;padding-top:16px;border-top:1px solid #202020;list-style:none}
+.tag-list li{border:1px solid #292929;border-radius:999px;padding:5px 9px;color:#aaa;font-size:10px;line-height:1.2}
+.page-footer{max-width:1320px;margin:0 auto;padding:24px 56px 34px;border-top:1px solid #151515;display:flex;justify-content:space-between;gap:16px;color:#777;font-size:11px}
+.page-footer a{color:#aaa;text-decoration:none}
+.page-footer a:hover{color:#fff}
+@media(max-width:980px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-header,main,.page-footer{padding-left:36px;padding-right:36px}}
+@media(max-width:680px){.site-header{padding:22px 22px}.intro{grid-template-columns:1fr;gap:16px;margin-bottom:30px}main{padding:58px 22px 72px}.project-grid{grid-template-columns:1fr}.media-placeholder{min-height:210px}.toolbar{align-items:flex-start;flex-direction:column}.page-footer{padding:22px;flex-direction:column}.card-content{padding:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">Leo Sulano / Portfolio</a>
+  <a class="back-link" href="index.html"><span class="back-arrow" aria-hidden="true">&larr;</span> Back to about</a>
+</header>
+<main>
+  <section class="intro" aria-labelledby="page-title">
+    <div>
+      <p class="eyebrow">Selected work</p>
+      <h1 id="page-title">Projects</h1>
+    </div>
+    <p class="intro-copy">Selected SEO, web development, and automation work.</p>
+  </section>
+  <section aria-label="Project gallery">
+    <div class="toolbar">
+      <div class="filter-list" role="group" aria-label="Filter projects">
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All work</button>
+        <button class="filter-button" type="button" data-filter="seo" aria-pressed="false">SEO</button>
+        <button class="filter-button" type="button" data-filter="development" aria-pressed="false">Development</button>
+        <button class="filter-button" type="button" data-filter="automation" aria-pressed="false">Automation</button>
+      </div>
+      <p class="result-count" aria-live="polite"><span id="visible-count">3</span> PROJECTS</p>
+    </div>
+    <div class="project-grid">
+      <article class="project-card" data-categories="seo automation">
+        <div class="media-placeholder" role="img" aria-label="Media placeholder for SEO Monitoring Dashboard">
+          <span class="media-index">01 / SEO</span><span class="media-status">Media coming soon</span>
+        </div>
+        <div class="card-content">
+          <div class="project-meta"><span class="project-number">Project 01</span><span class="project-type">Analytics</span></div>
+          <h2>SEO Monitoring Dashboard</h2>
+          <p class="project-description">Built a system to track website performance, health status, and SEO scores. Integrated PageSpeed insights with technical audit metrics.</p>
+          <ul class="tag-list"><li>SEO</li><li>Analytics</li><li>Automation</li></ul>
+        </div>
+      </article>
+      <article class="project-card" data-categories="seo development">
+        <div class="media-placeholder" role="img" aria-label="Media placeholder for WordPress Optimization Projects">
+          <span class="media-index">02 / WEB</span><span class="media-status">Media coming soon</span>
+        </div>
+        <div class="card-content">
+          <div class="project-meta"><span class="project-number">Project 02</span><span class="project-type">Web development</span></div>
+          <h2>WordPress Optimization</h2>
+          <p class="project-description">Improved site speed and Core Web Vitals, and implemented structured SEO strategies using Rank Math and Yoast.</p>
+          <ul class="tag-list"><li>WordPress</li><li>Performance</li><li>SEO</li></ul>
+        </div>
+      </article>
+      <article class="project-card" data-categories="seo">
+        <div class="media-placeholder" role="img" aria-label="Media placeholder for Link Building Campaigns">
+          <span class="media-index">03 / SEO</span><span class="media-status">Media coming soon</span>
+        </div>
+        <div class="card-content">
+          <div class="project-meta"><span class="project-number">Project 03</span><span class="project-type">Campaign</span></div>
+          <h2>Link Building Campaigns</h2>
+          <p class="project-description">Executed outreach campaigns to increase domain authority, analyzed competitor backlink profiles, and replicated high-value opportunities.</p>
+          <ul class="tag-list"><li>Outreach</li><li>Research</li><li>SEO</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+<footer class="page-footer"><span>Leo Sulano · Selected work</span><a href="index.html">Return to portfolio</a></footer>
+<script>
+const filterButtons = document.querySelectorAll('.filter-button');
+const projectCards = document.querySelectorAll('.project-card');
+const visibleCount = document.querySelector('#visible-count');
+
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.filter;
+    let count = 0;
+
+    filterButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    projectCards.forEach((card) => {
+      const visible = filter === 'all' || card.dataset.categories.split(' ').includes(filter);
+      card.hidden = !visible;
+      if (visible) count += 1;
+    });
+    visibleCount.textContent = String(count);
+  });
+});
+</script>
+</body>
+</html>

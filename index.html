@@ -93,6 +93,9 @@ h1 em{color:#c0392b;font-style:normal}
 
 /* ── PROJECTS ── */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.projects-link{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding-bottom:8px;border-bottom:1px solid #8b0000;color:#ddd;font-size:13px;text-decoration:none;transition:color .2s,gap .2s}
+.projects-link span{color:#c0392b}
+.projects-link:hover{gap:15px;color:#fff}
 .pcard{padding:36px;border-radius:20px;border:1px solid #1a1a1a;background:#0a0a0a;position:relative;overflow:hidden;transition:transform .4s,border-color .3s,box-shadow .3s;cursor:default}
 .pcard:hover{transform:scale(1.03);border-color:rgba(139,0,0,.35);box-shadow:0 20px 60px rgba(0,0,0,.5)}
 .pcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,0,0,.06),transparent);opacity:0;transition:opacity .4s}
@@ -328,6 +331,7 @@ h1 em{color:#c0392b;font-style:normal}
     <div class="pcard"><div class="pnum">Project 02</div><div class="ptitle">WordPress Optimization Projects</div><ul><li>Improved site speed and Core Web Vitals</li><li>Implemented structured SEO strategies using Rank Math &amp; Yoast</li></ul></div>
     <div class="pcard"><div class="pnum">Project 03</div><div class="ptitle">Link Building Campaigns</div><ul><li>Executed outreach campaigns to increase domain authority</li><li>Analyzed competitor backlink profiles and replicated high-value links</li></ul></div>
   </div>
+  <a class="projects-link" href="projects.html">Explore all projects <span aria-hidden="true">&rarr;</span></a>
 </div>
 
 <!-- ── APPROACH ── -->
