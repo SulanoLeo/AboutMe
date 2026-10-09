@@ -33,8 +33,12 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,72px);line-heig
 .project-card{min-width:0;overflow:hidden;border:1px solid #202020;border-radius:14px;background:var(--surface);transition:border-color .25s,transform .25s}
 .project-card:hover{transform:translateY(-3px);border-color:#49302d}
 .project-card[hidden]{display:none}
-.media-placeholder{position:relative;display:flex;min-height:220px;aspect-ratio:16/10;align-items:flex-end;justify-content:space-between;overflow:hidden;padding:18px;background:radial-gradient(ellipse at 85% 15%,rgba(192,57,43,.16),transparent 42%),linear-gradient(145deg,#171717,#0b0b0b 64%);border-bottom:1px solid #202020}
+.media-placeholder{position:relative;display:flex;width:100%;min-height:220px;aspect-ratio:16/10;align-items:flex-end;justify-content:space-between;overflow:hidden;padding:18px;border:0;border-bottom:1px solid #202020;background:radial-gradient(ellipse at 85% 15%,rgba(192,57,43,.16),transparent 42%),linear-gradient(145deg,#171717,#0b0b0b 64%);color:var(--text);font:inherit;text-align:left;cursor:zoom-in}
 .media-placeholder::before{position:absolute;inset:12px;border:1px solid rgba(255,255,255,.07);content:'';pointer-events:none}
+.media-placeholder:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+.media-placeholder[data-media-type="video"]::after{position:absolute;top:50%;left:50%;display:grid;width:52px;aspect-ratio:1;place-items:center;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(0,0,0,.55);color:#fff;content:'▶';font-size:18px;transform:translate(-50%,-50%);pointer-events:none}
+.media-placeholder[data-media-src]:not([data-media-src=""]){background-position:center;background-size:cover}
+.media-placeholder[data-media-type="video"]{cursor:pointer}
 .media-index,.media-status{position:relative;z-index:1;font:10px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
 .media-index{color:#ddd}
 .media-status{color:#999}
@@ -49,6 +53,15 @@ h2{font-family:'Playfair Display',serif;font-size:22px;line-height:1.25;margin-b
 .page-footer{max-width:1320px;margin:0 auto;padding:24px 56px 34px;border-top:1px solid #151515;display:flex;justify-content:space-between;gap:16px;color:#777;font-size:11px}
 .page-footer a{color:#aaa;text-decoration:none}
 .page-footer a:hover{color:#fff}
+.media-dialog{width:min(1280px,calc(100% - 32px));max-width:none;max-height:calc(100% - 32px);margin:auto;padding:16px;border:1px solid #333;border-radius:8px;background:#090909;color:var(--text)}
+.media-dialog::backdrop{background:rgba(0,0,0,.88);backdrop-filter:blur(5px)}
+.media-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px;color:#aaa;font:11px 'DM Mono',monospace}
+.media-dialog-close{width:36px;height:36px;border:1px solid #333;border-radius:4px;background:#111;color:#fff;font-size:22px;cursor:pointer}
+.media-dialog-close:hover{border-color:#777}
+.media-dialog-content{display:grid;min-height:200px;max-height:calc(100vh - 110px);place-items:center;overflow:auto;background:#050505}
+.media-dialog-content img{display:block;max-width:100%;max-height:calc(100vh - 110px);object-fit:contain}
+.media-dialog-content video{display:block;width:min(1200px,calc((100vh - 110px)*3/2),calc(100vw - 80px));height:min(800px,calc(100vh - 110px),calc((100vw - 80px)*2/3));max-width:100%;max-height:calc(100vh - 110px);aspect-ratio:3/2;object-fit:contain}
+.media-dialog-placeholder{padding:60px 20px;color:#888;font:12px 'DM Mono',monospace;text-align:center}
 @media(max-width:980px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-header,main,.page-footer{padding-left:36px;padding-right:36px}}
 @media(max-width:680px){.site-header{padding:22px}.intro{grid-template-columns:1fr;gap:16px;margin-bottom:30px}main{padding:58px 22px 72px}.project-grid{grid-template-columns:1fr}.media-placeholder{min-height:210px}.toolbar{align-items:flex-start;flex-direction:column}.page-footer{padding:22px;flex-direction:column}.card-content{padding:20px}.site-nav{gap:24px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
@@ -81,9 +94,9 @@ h2{font-family:'Playfair Display',serif;font-size:22px;line-height:1.25;margin-b
     </div>
     <div class="project-grid">
       <article class="project-card" data-categories="seo automation">
-        <div class="media-placeholder" role="img" aria-label="Media placeholder for SEO Monitoring Dashboard">
+        <button class="media-placeholder" type="button" data-media-type="image" data-media-src="" aria-label="Enlarge cover for SEO Monitoring Dashboard">
           <span class="media-index">01 / SEO</span><span class="media-status">Media coming soon</span>
-        </div>
+        </button>
         <div class="card-content">
           <div class="project-meta"><span class="project-number">Project 01</span><span class="project-type">Analytics</span></div>
           <h2>SEO Monitoring Dashboard</h2>
@@ -92,9 +105,9 @@ h2{font-family:'Playfair Display',serif;font-size:22px;line-height:1.25;margin-b
         </div>
       </article>
       <article class="project-card" data-categories="seo development">
-        <div class="media-placeholder" role="img" aria-label="Media placeholder for WordPress Optimization Projects">
+        <button class="media-placeholder" type="button" data-media-type="image" data-media-src="" aria-label="Enlarge cover for WordPress Optimization Projects">
           <span class="media-index">02 / WEB</span><span class="media-status">Media coming soon</span>
-        </div>
+        </button>
         <div class="card-content">
           <div class="project-meta"><span class="project-number">Project 02</span><span class="project-type">Web development</span></div>
           <h2>WordPress Optimization</h2>
@@ -103,9 +116,9 @@ h2{font-family:'Playfair Display',serif;font-size:22px;line-height:1.25;margin-b
         </div>
       </article>
       <article class="project-card" data-categories="seo">
-        <div class="media-placeholder" role="img" aria-label="Media placeholder for Link Building Campaigns">
+        <button class="media-placeholder" type="button" data-media-type="image" data-media-src="" aria-label="Enlarge cover for Link Building Campaigns">
           <span class="media-index">03 / SEO</span><span class="media-status">Media coming soon</span>
-        </div>
+        </button>
         <div class="card-content">
           <div class="project-meta"><span class="project-number">Project 03</span><span class="project-type">Campaign</span></div>
           <h2>Link Building Campaigns</h2>
@@ -117,6 +130,10 @@ h2{font-family:'Playfair Display',serif;font-size:22px;line-height:1.25;margin-b
   </section>
 </main>
 <footer class="page-footer"><span>Leo Sulano · Selected work</span><a href="index.html">Return to portfolio</a></footer>
+<dialog class="media-dialog" aria-label="Project media viewer">
+  <div class="media-dialog-header"><span class="media-dialog-title"></span><button class="media-dialog-close" type="button" aria-label="Close media viewer">&times;</button></div>
+  <div class="media-dialog-content"></div>
+</dialog>
 <script>
 const filterButtons = document.querySelectorAll('.filter-button');
 const projectCards = document.querySelectorAll('.project-card');
@@ -136,6 +153,56 @@ filterButtons.forEach((button) => {
     visibleCount.textContent = String(count);
   });
 });
+
+const mediaDialog = document.querySelector('.media-dialog');
+const mediaDialogTitle = document.querySelector('.media-dialog-title');
+const mediaDialogContent = document.querySelector('.media-dialog-content');
+
+document.querySelectorAll('.media-placeholder').forEach((cover) => {
+  const status = cover.querySelector('.media-status');
+
+  if (cover.dataset.mediaSrc) {
+    cover.style.backgroundImage = cover.dataset.mediaType === 'image'
+      ? `url("${cover.dataset.mediaSrc}")`
+      : `linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.55)), url("${cover.dataset.mediaPoster || ''}")`;
+    status.textContent = cover.dataset.mediaType === 'video' ? 'Play video' : 'Click to enlarge';
+  }
+
+  cover.addEventListener('click', () => {
+    const source = cover.dataset.mediaSrc;
+    mediaDialogTitle.textContent = cover.getAttribute('aria-label').replace('Enlarge cover for ', '');
+    mediaDialogContent.replaceChildren();
+
+    if (!source) {
+      const placeholder = document.createElement('div');
+      placeholder.className = 'media-dialog-placeholder';
+      placeholder.textContent = status.textContent;
+      mediaDialogContent.append(placeholder);
+    } else if (cover.dataset.mediaType === 'video') {
+      const video = document.createElement('video');
+      video.src = source;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      if (cover.dataset.mediaPoster) video.poster = cover.dataset.mediaPoster;
+      mediaDialogContent.append(video);
+    } else {
+      const image = document.createElement('img');
+      image.src = source;
+      image.alt = mediaDialogTitle.textContent;
+      mediaDialogContent.append(image);
+    }
+
+    mediaDialog.showModal();
+    mediaDialogContent.querySelector('video')?.play().catch(() => {});
+  });
+});
+
+document.querySelector('.media-dialog-close').addEventListener('click', () => mediaDialog.close());
+mediaDialog.addEventListener('click', (event) => {
+  if (event.target === mediaDialog) mediaDialog.close();
+});
+mediaDialog.addEventListener('close', () => mediaDialogContent.replaceChildren());
 </script>
 </body>
 </html>

@@ -27,3 +27,15 @@ background-image: url('images/hero.png');
 ```
 
 This is a relative path — works on both root and project GitHub Pages.
+
+## Project Covers
+
+Put project media in `images/projects/`. In `projects.html`, set each cover button's `data-media-src` to its file path. Keep `data-media-type="image"` for images, or change it to `data-media-type="video"` for a video. Videos can also use an optional `data-media-poster` image path. Clicking a cover opens the image enlarged or plays the video in a player.
+
+```html
+<button class="media-placeholder" data-media-type="image" data-media-src="images/projects/dashboard.webp">
+```
+
+```html
+<button class="media-placeholder" data-media-type="video" data-media-src="images/projects/wordpress-demo.mp4" data-media-poster="images/projects/wordpress-poster.webp">
+```
