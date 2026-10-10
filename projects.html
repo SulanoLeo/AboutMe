@@ -53,6 +53,9 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,72px);line-heig
 .project-type{color:#888;font-size:11px}
 h2{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin-bottom:11px}
 .project-description{color:#bcbcb9;font-size:13px;line-height:1.75}
+.project-video-link{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:15px;padding:0;border:0;background:transparent;color:#f0aaa3;font:600 12px 'DM Sans',sans-serif;cursor:pointer;transition:color .2s}
+.project-video-link:hover{color:#fff}
+.project-video-link:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .tag-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:18px;border-top:1px solid #202020;list-style:none}
 .tag-list li{border:1px solid #30302e;border-radius:3px;padding:5px 8px;color:#aaa;font-size:10px;line-height:1.2}
 .page-footer{max-width:1320px;margin:0 auto;padding:24px 56px 34px;border-top:1px solid #151515;display:flex;justify-content:space-between;gap:16px;color:#777;font-size:11px}
@@ -145,6 +148,7 @@ h2{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin-bo
           <div class="project-meta"><span class="project-number">Project 04</span><span class="project-type">Automation</span></div>
           <h2>Email Marketing Dashboard</h2>
           <p class="project-description">Built an automation-focused dashboard to track email campaign performance and surface key engagement metrics in one place.</p>
+          <button class="project-video-link" type="button" data-media-type="video" data-media-src="images/emailmarketingdashboard.mp4" data-media-poster="images/email_marketing.png" aria-label="Play video for Email Marketing Dashboard"><span aria-hidden="true">&#9654;</span> Watch dashboard demo</button>
           <ul class="tag-list"><li>Email Marketing</li><li>Dashboard</li><li>Automation</li></ul>
         </div>
       </article>
@@ -180,25 +184,25 @@ const mediaDialog = document.querySelector('.media-dialog');
 const mediaDialogTitle = document.querySelector('.media-dialog-title');
 const mediaDialogContent = document.querySelector('.media-dialog-content');
 
-document.querySelectorAll('.media-placeholder').forEach((cover) => {
+document.querySelectorAll('.media-placeholder, .project-video-link').forEach((cover) => {
   const status = cover.querySelector('.media-status');
 
   if (cover.dataset.mediaSrc) {
     cover.style.backgroundImage = cover.dataset.mediaType === 'image'
       ? `url("${cover.dataset.mediaSrc}")`
       : `linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.55)), url("${cover.dataset.mediaPoster || ''}")`;
-    status.textContent = cover.dataset.mediaType === 'video' ? 'Play video' : 'Click to enlarge';
+    if (status) status.textContent = cover.dataset.mediaType === 'video' ? 'Play video' : 'Click to enlarge';
   }
 
   cover.addEventListener('click', () => {
     const source = cover.dataset.mediaSrc;
-    mediaDialogTitle.textContent = cover.getAttribute('aria-label').replace('Enlarge cover for ', '');
+    mediaDialogTitle.textContent = cover.closest('.project-card').querySelector('h2').textContent;
     mediaDialogContent.replaceChildren();
 
     if (!source) {
       const placeholder = document.createElement('div');
       placeholder.className = 'media-dialog-placeholder';
-      placeholder.textContent = status.textContent;
+      placeholder.textContent = status?.textContent || 'Media unavailable';
       mediaDialogContent.append(placeholder);
     } else if (cover.dataset.mediaType === 'video') {
       const video = document.createElement('video');
