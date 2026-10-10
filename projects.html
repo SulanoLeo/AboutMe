@@ -65,10 +65,12 @@ h2{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin-bo
 .media-dialog-close:hover{border-color:#777}
 .media-dialog-content{display:grid;min-height:200px;max-height:calc(100vh - 110px);place-items:center;overflow:auto;background:#050505}
 .media-dialog-content img{display:block;max-width:100%;max-height:calc(100vh - 110px);object-fit:contain}
+.media-dialog-image-pair{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:12px}
+.media-dialog-image-pair img{width:100%}
 .media-dialog-content video{display:block;width:min(1200px,calc((100vh - 110px)*3/2),calc(100vw - 80px));height:min(800px,calc(100vh - 110px),calc((100vw - 80px)*2/3));max-width:100%;max-height:calc(100vh - 110px);aspect-ratio:3/2;object-fit:contain}
 .media-dialog-placeholder{padding:60px 20px;color:#888;font:12px 'DM Mono',monospace;text-align:center}
 @media(max-width:980px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-header,main,.page-footer{padding-left:36px;padding-right:36px}}
-@media(max-width:680px){.site-header{padding:22px}.intro{grid-template-columns:1fr;gap:16px;margin-bottom:30px}main{padding:58px 22px 72px}.project-grid{grid-template-columns:1fr}.media-placeholder{min-height:210px}.toolbar{align-items:flex-start;flex-direction:column}.page-footer{padding:22px;flex-direction:column}.card-content{padding:20px}.site-nav{gap:24px}}
+@media(max-width:680px){.site-header{padding:22px}.intro{grid-template-columns:1fr;gap:16px;margin-bottom:30px}main{padding:58px 22px 72px}.project-grid{grid-template-columns:1fr}.media-placeholder{min-height:210px}.toolbar{align-items:flex-start;flex-direction:column}.page-footer{padding:22px;flex-direction:column}.card-content{padding:20px}.site-nav{gap:24px}.media-dialog-image-pair{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 </head>
@@ -95,7 +97,7 @@ h2{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin-bo
         <button class="filter-button" type="button" data-filter="development" aria-pressed="false">Development</button>
         <button class="filter-button" type="button" data-filter="automation" aria-pressed="false">Automation</button>
       </div>
-      <p class="result-count" aria-live="polite"><span id="visible-count">3</span> PROJECTS</p>
+      <p class="result-count" aria-live="polite"><span id="visible-count">4</span> PROJECTS</p>
     </div>
     <div class="project-grid">
       <article class="project-card" data-categories="seo automation">
@@ -132,6 +134,18 @@ h2{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin-bo
           <h2>Link Building Campaigns</h2>
           <p class="project-description">Executed outreach campaigns to increase domain authority, analyzed competitor backlink profiles, and replicated high-value opportunities.</p>
           <ul class="tag-list"><li>Outreach</li><li>Research</li><li>SEO</li></ul>
+        </div>
+      </article>
+      <article class="project-card" data-categories="automation">
+        <button class="media-placeholder" type="button" data-media-type="image" data-media-src="images/email_marketing.png" data-media-extra-src="images/email-marketing.png" aria-label="Enlarge cover for Email Marketing Dashboard">
+          <span class="media-watermark" aria-hidden="true">04</span>
+          <span class="media-index">04 / AUTOMATION</span><span class="media-status">Media coming soon</span>
+        </button>
+        <div class="card-content">
+          <div class="project-meta"><span class="project-number">Project 04</span><span class="project-type">Automation</span></div>
+          <h2>Email Marketing Dashboard</h2>
+          <p class="project-description">Built an automation-focused dashboard to track email campaign performance and surface key engagement metrics in one place.</p>
+          <ul class="tag-list"><li>Email Marketing</li><li>Dashboard</li><li>Automation</li></ul>
         </div>
       </article>
     </div>
@@ -194,6 +208,16 @@ document.querySelectorAll('.media-placeholder').forEach((cover) => {
       video.playsInline = true;
       if (cover.dataset.mediaPoster) video.poster = cover.dataset.mediaPoster;
       mediaDialogContent.append(video);
+    } else if (cover.dataset.mediaExtraSrc) {
+      const imagePair = document.createElement('div');
+      imagePair.className = 'media-dialog-image-pair';
+      [source, cover.dataset.mediaExtraSrc].forEach((imageSource, index) => {
+        const image = document.createElement('img');
+        image.src = imageSource;
+        image.alt = `${mediaDialogTitle.textContent} - ${index === 0 ? 'ISP Analytics' : 'Mailgun Review'}`;
+        imagePair.append(image);
+      });
+      mediaDialogContent.append(imagePair);
     } else {
       const image = document.createElement('img');
       image.src = source;
