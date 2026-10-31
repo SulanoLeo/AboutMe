@@ -22,11 +22,6 @@ interface ExpertiseCardProps {
   items: string[];
   delay?: number;
 }
-interface ProjectCardProps {
-  title: string;
-  description: string[];
-  index: number;
-}
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
 const fadeUp = {
@@ -123,39 +118,6 @@ function ExpertiseCard({ icon, title, items, delay = 0 }: ExpertiseCardProps) {
   );
 }
 
-function ProjectCard({ title, description, index }: ProjectCardProps) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ scale: 1.01 }}
-      className="group relative p-7 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a] overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative">
-        <span className="text-[10px] uppercase tracking-[0.2em] text-[#6366f1]/70 font-medium">
-          Project {String(index + 1).padStart(2, "0")}
-        </span>
-        <h3 className="mt-2 text-lg font-bold text-white mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-          {title}
-        </h3>
-        <ul className="space-y-2">
-          {description.map((d) => (
-            <li key={d} className="text-sm text-[#5e5e5e] leading-relaxed flex items-start gap-2">
-              <span className="mt-2 w-1 h-1 rounded-full bg-[#6366f1]/50 flex-shrink-0" />
-              {d}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </motion.div>
-  );
-}
-
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const expertise = [
   {
@@ -221,30 +183,6 @@ const strengths = [
   "Experience in building scalable SEO and automation systems",
   "Focused on real business impact, not just metrics",
   "Fast learner with a mindset for continuous improvement",
-];
-
-const projects = [
-  {
-    title: "SEO Monitoring Dashboard",
-    description: [
-      "Built a system to track website performance, health status, and SEO scores",
-      "Integrated PageSpeed insights and technical audit metrics",
-    ],
-  },
-  {
-    title: "WordPress Optimization Projects",
-    description: [
-      "Improved site speed and Core Web Vitals",
-      "Implemented structured SEO strategies using Rank Math & Yoast",
-    ],
-  },
-  {
-    title: "Link Building Campaigns",
-    description: [
-      "Executed outreach campaigns to increase domain authority",
-      "Analyzed competitor backlink profiles and replicated high-value links",
-    ],
-  },
 ];
 
 const workApproach = [
@@ -367,16 +305,6 @@ export default function HomePage() {
                 </motion.div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROJECTS ── */}
-      <section className="relative py-28 px-6 sm:px-10 border-t border-[#0f0f0f]">
-        <div className="max-w-5xl mx-auto">
-          <SectionTitle label="Work" title="Projects" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {projects.map((p, i) => <ProjectCard key={p.title} title={p.title} description={p.description} index={i} />)}
           </div>
         </div>
       </section>

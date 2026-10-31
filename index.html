@@ -96,21 +96,6 @@ h1 em{color:#c0392b;font-style:normal}
 .snum{font-family:'DM Mono',monospace;font-size:10px;color:#1e1e1e;flex-shrink:0;padding-top:2px;transition:color .3s}
 .stxt{font-size:13px;color:#aaa;line-height:1.75;transition:color .3s}
 
-/* ── PROJECTS ── */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.projects-link{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding-bottom:8px;border-bottom:1px solid #8b0000;color:#ddd;font-size:13px;text-decoration:none;transition:color .2s,gap .2s}
-.projects-link span{color:#c0392b}
-.projects-link:hover{gap:15px;color:#fff}
-.pcard{padding:36px;border-radius:20px;border:1px solid #1a1a1a;background:#0a0a0a;position:relative;overflow:hidden;transition:transform .4s,border-color .3s,box-shadow .3s;cursor:default}
-.pcard:hover{transform:scale(1.03);border-color:rgba(139,0,0,.35);box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.pcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,0,0,.06),transparent);opacity:0;transition:opacity .4s}
-.pcard:hover::before{opacity:1}
-.pnum{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#8b0000;opacity:.9;font-weight:600}
-.ptitle{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin:10px 0 18px;line-height:1.25}
-.pcard ul{list-style:none;display:flex;flex-direction:column;gap:12px}
-.pcard li{font-size:13px;color:#aaa;line-height:1.75;display:flex;align-items:flex-start;gap:10px}
-.pcard li::before{content:'';width:4px;height:4px;border-radius:50%;background:#8b0000;opacity:.5;flex-shrink:0;margin-top:8px}
-
 /* ── APPROACH ── */
 .agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .acard{padding:24px;border-radius:18px;border:1px solid #141414;background:#090909;position:relative;transition:transform .3s,border-color .3s;cursor:default}
@@ -199,7 +184,6 @@ h1 em{color:#c0392b;font-style:normal}
   <div class="hero-bottom"></div>
   <nav class="hero-nav site-nav" aria-label="Main navigation">
     <a class="nav-link" href="/AboutMe/" aria-current="page">Me</a>
-    <a class="nav-link" href="/AboutMe/projects">Projects</a>
   </nav>
   <div class="hero-content">
     <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Portfolio</span></div>
@@ -331,20 +315,6 @@ h1 em{color:#c0392b;font-style:normal}
     <div class="srow"><span class="snum">04</span><p class="stxt">Focused on real business impact, not just metrics</p></div>
     <div class="srow"><span class="snum">05</span><p class="stxt">Fast learner with a mindset for continuous improvement</p></div>
   </div>
-</div>
-
-<!-- ── PROJECTS ── -->
-<div class="divider-f"></div>
-<div class="wrap">
-  <p class="sec-label">Work</p>
-  <h2 class="sec-title">Projects</h2>
-  <div class="sec-div"></div>
-  <div class="pgrid">
-    <div class="pcard"><div class="pnum">Project 01</div><div class="ptitle">SEO Monitoring Dashboard</div><ul><li>Built a system to track website performance, health status, and SEO scores</li><li>Integrated PageSpeed insights and technical audit metrics</li></ul></div>
-    <div class="pcard"><div class="pnum">Project 02</div><div class="ptitle">WordPress Optimization Projects</div><ul><li>Improved site speed and Core Web Vitals</li><li>Implemented structured SEO strategies using Rank Math &amp; Yoast</li></ul></div>
-    <div class="pcard"><div class="pnum">Project 03</div><div class="ptitle">Link Building Campaigns</div><ul><li>Executed outreach campaigns to increase domain authority</li><li>Analyzed competitor backlink profiles and replicated high-value links</li></ul></div>
-  </div>
-  <a class="projects-link" href="/AboutMe/projects">Explore all projects <span aria-hidden="true">&rarr;</span></a>
 </div>
 
 <!-- ── APPROACH ── -->
