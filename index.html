@@ -96,6 +96,29 @@ h1 em{color:#c0392b;font-style:normal}
 .snum{font-family:'DM Mono',monospace;font-size:10px;color:#1e1e1e;flex-shrink:0;padding-top:2px;transition:color .3s}
 .stxt{font-size:13px;color:#aaa;line-height:1.75;transition:color .3s}
 
+/* ── PROJECTS ── */
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;border-top:1px solid #222;border-bottom:1px solid #222;margin-bottom:30px}
+.filter-list{display:flex;flex-wrap:wrap;gap:8px}
+.filter-button{appearance:none;border:1px solid #292929;border-radius:999px;padding:8px 15px;background:transparent;color:#aaa;font:500 12px 'DM Sans',sans-serif;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.filter-button:hover{border-color:#777;color:#fff}
+.filter-button[aria-pressed="true"]{border-color:#c0392b;background:rgba(192,57,43,.12);color:#f0aaa3}
+.result-count{flex-shrink:0;color:#777;font:11px 'DM Mono',monospace}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.pcard{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid #202020;border-radius:10px;background:linear-gradient(145deg,#101010,#0b0b0b 70%);transition:border-color .25s,transform .25s,background .25s}
+.pcard:hover{transform:translateY(-3px);border-color:#49302d;background:linear-gradient(145deg,#131110,#0b0b0b 70%)}
+.pcard:focus-within{border-color:#70423d}
+.pcard[hidden]{display:none}
+.pcontent{display:flex;flex:1;flex-direction:column;padding:24px 23px 23px}
+.pmeta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.pnum{color:#c0392b;font:10px 'DM Mono',monospace;letter-spacing:.15em;text-transform:uppercase}
+.ptype{color:#888;font-size:11px}
+.ptitle{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin-bottom:11px}
+.pdesc{color:#bcbcb9;font-size:13px;line-height:1.75}
+.plink{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:15px;padding:0;border:0;background:transparent;color:#f0aaa3;font:600 12px 'DM Sans',sans-serif;cursor:pointer;transition:color .2s}
+.plink:hover{color:#fff}
+.ptags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:18px;border-top:1px solid #202020;list-style:none}
+.ptags li{border:1px solid #30302e;border-radius:3px;padding:5px 8px;color:#aaa;font-size:10px;line-height:1.2}
+
 /* ── APPROACH ── */
 .agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .acard{padding:24px;border-radius:18px;border:1px solid #141414;background:#090909;position:relative;transition:transform .3s,border-color .3s;cursor:default}
@@ -184,6 +207,7 @@ h1 em{color:#c0392b;font-style:normal}
   <div class="hero-bottom"></div>
   <nav class="hero-nav site-nav" aria-label="Main navigation">
     <a class="nav-link" href="/AboutMe/" aria-current="page">Me</a>
+    <a class="nav-link" href="/AboutMe/projects">Projects</a>
   </nav>
   <div class="hero-content">
     <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Portfolio</span></div>
@@ -317,6 +341,58 @@ h1 em{color:#c0392b;font-style:normal}
   </div>
 </div>
 
+<!-- ── PROJECTS ── -->
+<div class="divider-f"></div>
+<div class="wrap">
+  <p class="sec-label">Work</p>
+  <h2 class="sec-title">Projects</h2>
+  <div class="sec-div"></div>
+  <div class="toolbar">
+    <div class="filter-list" role="group" aria-label="Filter projects">
+      <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All work</button>
+      <button class="filter-button" type="button" data-filter="seo" aria-pressed="false">SEO</button>
+      <button class="filter-button" type="button" data-filter="development" aria-pressed="false">Development</button>
+      <button class="filter-button" type="button" data-filter="automation" aria-pressed="false">Automation</button>
+    </div>
+    <p class="result-count" aria-live="polite"><span id="visible-count">4</span> PROJECTS</p>
+  </div>
+  <div class="pgrid">
+    <article class="pcard" data-categories="seo automation">
+      <div class="pcontent">
+        <div class="pmeta"><span class="pnum">Project 01</span><span class="ptype">Analytics</span></div>
+        <div class="ptitle">SEO Monitoring Dashboard</div>
+        <p class="pdesc">Built a system to track website performance, health status, and SEO scores. Integrated PageSpeed insights with technical audit metrics.</p>
+        <ul class="ptags"><li>SEO</li><li>Analytics</li><li>Automation</li></ul>
+      </div>
+    </article>
+    <article class="pcard" data-categories="seo development">
+      <div class="pcontent">
+        <div class="pmeta"><span class="pnum">Project 02</span><span class="ptype">Web development</span></div>
+        <div class="ptitle">WordPress Optimization</div>
+        <p class="pdesc">Improved site speed and Core Web Vitals, and implemented structured SEO strategies using Rank Math and Yoast.</p>
+        <ul class="ptags"><li>WordPress</li><li>Performance</li><li>SEO</li></ul>
+      </div>
+    </article>
+    <article class="pcard" data-categories="seo">
+      <div class="pcontent">
+        <div class="pmeta"><span class="pnum">Project 03</span><span class="ptype">Campaign</span></div>
+        <div class="ptitle">Link Building Campaigns</div>
+        <p class="pdesc">Executed outreach campaigns to increase domain authority, analyzed competitor backlink profiles, and replicated high-value opportunities.</p>
+        <ul class="ptags"><li>Outreach</li><li>Research</li><li>SEO</li></ul>
+      </div>
+    </article>
+    <article class="pcard" data-categories="automation">
+      <div class="pcontent">
+        <div class="pmeta"><span class="pnum">Project 04</span><span class="ptype">Automation</span></div>
+        <div class="ptitle">Email Marketing Dashboard</div>
+        <p class="pdesc">Built an automation-focused dashboard to track email campaign performance and surface key engagement metrics in one place.</p>
+        <button class="plink" type="button" data-media-type="video" data-media-src="images/emailmarketingdashboard.mp4" data-media-poster="images/email_marketing.png" aria-label="Play video for Email Marketing Dashboard"><span aria-hidden="true">&#9654;</span> Watch dashboard demo</button>
+        <ul class="ptags"><li>Email Marketing</li><li>Dashboard</li><li>Automation</li></ul>
+      </div>
+    </article>
+  </div>
+</div>
+
 <!-- ── APPROACH ── -->
 <div class="divider-f"></div>
 <div class="wrap">
@@ -364,6 +440,23 @@ h1 em{color:#c0392b;font-style:normal}
     w.addEventListener('mouseleave',function(){tip.style.opacity='0';});
   });
 })();
+
+var filterButtons=document.querySelectorAll('.filter-button');
+var projectCards=document.querySelectorAll('.pcard');
+var visibleCount=document.querySelector('#visible-count');
+filterButtons.forEach(function(button){
+  button.addEventListener('click',function(){
+    var filter=button.dataset.filter;
+    var count=0;
+    filterButtons.forEach(function(item){item.setAttribute('aria-pressed',String(item===button));});
+    projectCards.forEach(function(card){
+      var visible=filter==='all'||card.dataset.categories.split(' ').includes(filter);
+      card.hidden=!visible;
+      if(visible)count+=1;
+    });
+    visibleCount.textContent=String(count);
+  });
+});
 </script>
 </body>
 </html>

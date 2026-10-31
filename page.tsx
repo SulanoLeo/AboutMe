@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Search,
   Code2,
@@ -21,6 +21,12 @@ interface ExpertiseCardProps {
   title: string;
   items: string[];
   delay?: number;
+}
+interface ProjectCardProps {
+  title: string;
+  description: string[];
+  categories: string[];
+  index: number;
 }
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
@@ -118,6 +124,39 @@ function ExpertiseCard({ icon, title, items, delay = 0 }: ExpertiseCardProps) {
   );
 }
 
+function ProjectCard({ title, description, categories, index }: ProjectCardProps) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ scale: 1.01 }}
+      className="group relative p-7 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a] overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-[#6366f1]/70 font-medium">
+          Project {String(index + 1).padStart(2, "0")}
+        </span>
+        <h3 className="mt-2 text-lg font-bold text-white mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+          {title}
+        </h3>
+        <p className="text-[#5e5e5e] text-sm leading-relaxed mb-4">{description.join(" ")}</p>
+        <ul className="space-y-1 mb-6">
+          {categories.map((cat) => (
+            <li key={cat} className="inline-block border border-[#30302e] rounded px-2 py-0.5 text-[10px] text-[#aaa]">
+              {cat}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const expertise = [
   {
@@ -185,6 +224,29 @@ const strengths = [
   "Fast learner with a mindset for continuous improvement",
 ];
 
+const projects = [
+  {
+    title: "SEO Monitoring Dashboard",
+    description: ["Built a system to track website performance, health status, and SEO scores", "Integrated PageSpeed insights and technical audit metrics"],
+    categories: ["seo", "automation"],
+  },
+  {
+    title: "WordPress Optimization",
+    description: ["Improved site speed and Core Web Vitals, and implemented structured SEO strategies using Rank Math and Yoast"],
+    categories: ["seo", "development"],
+  },
+  {
+    title: "Link Building Campaigns",
+    description: ["Executed outreach campaigns to increase domain authority, analyzed competitor backlink profiles, and replicated high-value opportunities"],
+    categories: ["seo"],
+  },
+  {
+    title: "Email Marketing Dashboard",
+    description: ["Built an automation-focused dashboard to track email campaign performance and surface key engagement metrics in one place"],
+    categories: ["automation"],
+  },
+];
+
 const workApproach = [
   { step: "01", label: "Analyze",  detail: "Audit + identify issues",                   icon: <Search size={14} strokeWidth={1.8} /> },
   { step: "02", label: "Optimize", detail: "SEO + performance improvements",             icon: <Activity size={14} strokeWidth={1.8} /> },
@@ -195,6 +257,8 @@ const workApproach = [
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const heroRef = useRef(null);
+  const [filter, setFilter] = useState("all");
+  const filteredProjects = filter === "all" ? projects : projects.filter((p) => p.categories.includes(filter));
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
@@ -305,6 +369,41 @@ export default function HomePage() {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROJECTS ── */}
+      <section className="relative py-28 px-6 sm:px-10 border-t border-[#0f0f0f]">
+        <div className="max-w-5xl mx-auto">
+          <SectionTitle label="Work" title="Projects" />
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 border-b border-[#111] pb-4">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects">
+              {[
+                { label: "All work", value: "all" },
+                { label: "SEO", value: "seo" },
+                { label: "Development", value: "development" },
+                { label: "Automation", value: "automation" },
+              ].map((f) => (
+                <button
+                  key={f.value}
+                  onClick={() => setFilter(f.value)}
+                  className={`appearance-none border border-[#292929] rounded-full px-4 py-1.5 text-[11px] text-[#aaa] transition-colors ${
+                    filter === f.value
+                      ? "border-[#c0392b] bg-[#c0392b]/10 text-[#f0aaa3]"
+                      : ""
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+            <p className="text-[11px] text-[#777] font-mono">{filteredProjects.length} PROJECTS</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {filteredProjects.map((p, i) => (
+              <ProjectCard key={p.title} title={p.title} description={p.description} categories={p.categories} index={i} />
+            ))}
           </div>
         </div>
       </section>
