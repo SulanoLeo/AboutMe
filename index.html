@@ -119,6 +119,11 @@ h1 em{color:#c0392b;font-style:normal}
 .plink{display:none}
 .ptags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:18px;border-top:1px solid #202020;list-style:none}
 .ptags li{border:1px solid #30302e;border-radius:3px;padding:5px 8px;color:#aaa;font-size:10px;line-height:1.2}
+.project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
+.project-link{display:flex;min-width:0;min-height:44px;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;padding:8px 10px;border:1px solid #252525;border-radius:6px;background:#0d0d0d;color:#858585;font:500 11px 'DM Sans',sans-serif;text-align:left}
+.project-link:disabled{cursor:not-allowed;opacity:.8}
+.project-link-label{line-height:1.35}
+.project-link-status{color:#555;font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em}
 
 /* ── APPROACH ── */
 .agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
@@ -130,6 +135,17 @@ h1 em{color:#c0392b;font-style:normal}
 .aicon svg{width:14px;height:14px;stroke:#c0392b;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .alabel{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#f0f0f0;margin-bottom:5px}
 .adetail{font-size:11px;color:#aaa;line-height:1.65}
+
+.cta-section{padding-top:48px;padding-bottom:48px}
+.cta-panel{padding:clamp(28px,5vw,56px);border:1px solid #24201f;border-radius:18px;background:radial-gradient(ellipse at top left,rgba(139,0,0,.14),transparent 58%),linear-gradient(145deg,#101010,#090909 75%);text-align:center}
+.cta-title{max-width:680px;margin:0 auto 16px;font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,40px);font-weight:700;line-height:1.16;color:#fff}
+.cta-copy{max-width:650px;margin:0 auto;color:#aaa;font-size:14px;line-height:1.8}
+.cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
+.cta-button{display:inline-flex;min-height:46px;align-items:center;justify-content:center;padding:11px 20px;border:1px solid #3a302e;border-radius:999px;color:#ddd;font-size:12px;font-weight:500;text-decoration:none;transition:background .2s,border-color .2s,color .2s}
+.cta-button-primary{border-color:#8b0000;background:#8b0000;color:#fff}
+.cta-button-primary:hover,.cta-button-primary:focus-visible{border-color:#c0392b;background:#a12b21}
+.cta-button-secondary:hover,.cta-button-secondary:focus-visible{border-color:#70423d;background:rgba(139,0,0,.12);color:#fff}
+.cta-button:focus-visible{outline:2px solid #c0392b;outline-offset:3px}
 
 .footer{padding:44px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:1200px;margin:0 auto}
 
@@ -156,6 +172,7 @@ h1 em{color:#c0392b;font-style:normal}
   .cards{grid-template-columns:repeat(2,1fr)}
   .agrid{grid-template-columns:repeat(2,1fr)}
   .pgrid{grid-template-columns:1fr}
+  .project-links{grid-template-columns:repeat(2,minmax(0,1fr))}
   .roles{gap:6px}
   .role-pill{font-size:12px;padding:6px 14px}
   .intro{max-width:100%}
@@ -177,6 +194,8 @@ h1 em{color:#c0392b;font-style:normal}
   .cards{grid-template-columns:1fr}
   .agrid{grid-template-columns:repeat(2,1fr);gap:10px}
   .pgrid{grid-template-columns:1fr}
+  .project-links{gap:7px}
+  .project-link{padding:8px}
   .pcontent{padding:20px}
   .ptitle{font-size:17px}
   .acard{padding:18px}
@@ -365,6 +384,10 @@ h1 em{color:#c0392b;font-style:normal}
         <h3 class="ptitle">SEO Monitoring Dashboard</h3>
         <p class="pdesc">Engineered an automated monitoring system integrating PageSpeed Insights and technical audit metrics, giving real-time visibility into site health.</p>
         <ul class="ptags"><li>SEO</li><li>Analytics</li><li>Automation</li></ul>
+        <div class="project-links" aria-label="Project links">
+          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
+          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+        </div>
       </div>
     </article>
     <article class="pcard" data-categories="seo development">
@@ -373,6 +396,10 @@ h1 em{color:#c0392b;font-style:normal}
         <h3 class="ptitle">WordPress Optimization</h3>
         <p class="pdesc">Optimized WordPress site speed and Core Web Vitals (improving LCP/CLS scores) while deploying structured schema and Rank Math SEO strategies.</p>
         <ul class="ptags"><li>WordPress</li><li>Performance</li><li>SEO</li></ul>
+        <div class="project-links" aria-label="Project links">
+          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
+          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+        </div>
       </div>
     </article>
     <article class="pcard" data-categories="seo">
@@ -381,6 +408,10 @@ h1 em{color:#c0392b;font-style:normal}
         <h3 class="ptitle">Link Building Campaigns</h3>
         <p class="pdesc">Executed targeted outreach campaigns and competitor backlink analysis to acquire high-authority backlinks and boost domain rank.</p>
         <ul class="ptags"><li>Outreach</li><li>Research</li><li>SEO</li></ul>
+        <div class="project-links" aria-label="Project links">
+          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
+          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+        </div>
       </div>
     </article>
     <article class="pcard" data-categories="automation">
@@ -389,6 +420,10 @@ h1 em{color:#c0392b;font-style:normal}
         <h3 class="ptitle">Email Marketing Dashboard</h3>
         <p class="pdesc">Built an automated analytics dashboard to centralize campaign metrics and track subscriber engagement in real time.</p>
         <ul class="ptags"><li>Email Marketing</li><li>Dashboard</li><li>Automation</li></ul>
+        <div class="project-links" aria-label="Project links">
+          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
+          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+        </div>
       </div>
     </article>
   </div>
@@ -408,6 +443,17 @@ h1 em{color:#c0392b;font-style:normal}
     <div class="acard"><span class="astep">04</span><div class="aicon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div><div class="alabel">Scale</div><div class="adetail">Build systems that grow with the business</div></div>
   </div>
 </div>
+
+<section class="cta-section wrap" aria-labelledby="cta-title">
+  <div class="cta-panel">
+    <h2 class="cta-title" id="cta-title">Let’s Build Something High-Performing Together</h2>
+    <p class="cta-copy">Whether you need technical SEO optimization, modern web development, or automated workflows, I’m ready to help scale your digital presence.</p>
+    <div class="cta-actions">
+      <a class="cta-button cta-button-primary" href="mailto:emaileosulano@gmail.com">Get in Touch</a>
+      <a class="cta-button cta-button-secondary" href="https://www.linkedin.com/in/leo-sulano/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
 
 <div class="divider"></div>
 <div class="footer">
