@@ -2,6 +2,9 @@
 
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import Image, { type StaticImageData } from "next/image";
+import emailDashboardImage from "./images/email_marketing.png";
+import emailDashboardDetailImage from "./images/email-marketing.png";
 import {
   Search,
   Code2,
@@ -27,6 +30,11 @@ interface ProjectCardProps {
   description: string[];
   categories: string[];
   index: number;
+  image: StaticImageData | null;
+  screenshots: StaticImageData[];
+  internalTool: boolean;
+  githubUrl: string | null;
+  demoUrl: string | null;
 }
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
@@ -124,36 +132,128 @@ function ExpertiseCard({ icon, title, items, delay = 0 }: ExpertiseCardProps) {
   );
 }
 
-function ProjectCard({ title, description, categories, index }: ProjectCardProps) {
+function ProjectCard({ title, description, categories, index, image, screenshots, internalTool, githubUrl, demoUrl }: ProjectCardProps) {
   const ref = useRef(null);
+  const screenshotsDialogRef = useRef<HTMLDialogElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.div
+    <motion.article
       ref={ref}
       initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ scale: 1.01 }}
-      className="group relative p-7 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a] overflow-hidden"
+      className="group relative rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a] overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative">
+      {image ? (
+        <div className="relative aspect-video overflow-hidden border-b border-[#1a1a1a]">
+          <Image
+            src={image}
+            alt={`${title} interface screenshot`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            unoptimized
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+      ) : (
+        <div
+          className="flex aspect-video items-center justify-center border-b border-[#1a1a1a] bg-gradient-to-br from-[#11111a] to-[#090909] px-6 text-center text-xs text-[#555]"
+          role="img"
+          aria-label={`${title} screenshot coming soon`}
+        >
+          Project screenshot coming soon
+        </div>
+      )}
+      <div className="relative flex h-full flex-col p-6">
         <span className="text-[10px] uppercase tracking-[0.2em] text-[#6366f1]/70 font-medium">
           Project {String(index + 1).padStart(2, "0")}
         </span>
+        {internalTool && (
+          <span className="mt-3 w-fit rounded-full border border-[#6366f1]/25 bg-[#6366f1]/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-[#a5a6f6]">
+            Internal Tool
+          </span>
+        )}
         <h3 className="mt-2 text-lg font-bold text-white mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
           {title}
         </h3>
-        <p className="text-[#5e5e5e] text-sm leading-relaxed mb-4">{description.join(" ")}</p>
-        <ul className="space-y-1 mb-6">
+        <p className="text-[#9a9a9a] text-sm leading-relaxed mb-4">{description.join(" ")}</p>
+        <ul className="flex flex-wrap gap-1 mb-6">
           {categories.map((cat) => (
-            <li key={cat} className="inline-block border border-[#30302e] rounded px-2 py-0.5 text-[10px] text-[#aaa]">
+            <li key={cat} className="border border-[#30302e] rounded px-2 py-0.5 text-[10px] text-[#aaa]">
               {cat}
             </li>
           ))}
         </ul>
+        <div className="mt-auto grid grid-cols-2 gap-2">
+          {githubUrl ? (
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-[#30302e] px-3 py-2.5 text-center text-xs font-medium text-[#ddd] transition-colors hover:border-[#6366f1]/50 hover:text-white">
+              View Code
+            </a>
+          ) : (
+            <span aria-disabled="true" className="cursor-not-allowed rounded-lg border border-[#242424] px-3 py-2.5 text-center text-xs font-medium text-[#555]">
+              View Code · Coming soon
+            </span>
+          )}
+          {screenshots.length > 0 ? (
+            <button
+              type="button"
+              onClick={() => screenshotsDialogRef.current?.showModal()}
+              className="rounded-lg border border-[#30302e] px-3 py-2.5 text-center text-xs font-medium text-[#ddd] transition-colors hover:border-[#6366f1]/50 hover:text-white"
+            >
+              View Screenshots
+            </button>
+          ) : internalTool ? (
+            <button type="button" disabled className="cursor-not-allowed rounded-lg border border-[#242424] px-3 py-2.5 text-center text-xs font-medium text-[#555]">
+              View Screenshots · Coming soon
+            </button>
+          ) : demoUrl ? (
+            <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-[#30302e] px-3 py-2.5 text-center text-xs font-medium text-[#ddd] transition-colors hover:border-[#6366f1]/50 hover:text-white">
+              Watch Demo / Live
+            </a>
+          ) : (
+            <span aria-disabled="true" className="cursor-not-allowed rounded-lg border border-[#242424] px-3 py-2.5 text-center text-xs font-medium text-[#555]">
+              Watch Demo / Live · Coming soon
+            </span>
+          )}
+        </div>
       </div>
-    </motion.div>
+      {screenshots.length > 0 && (
+        <dialog
+          ref={screenshotsDialogRef}
+          aria-labelledby={`screenshots-title-${index}`}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) screenshotsDialogRef.current?.close();
+          }}
+          className="m-auto w-[min(1000px,calc(100%-32px))] max-h-[90vh] rounded-2xl border border-[#303030] bg-[#090909] p-5 text-white shadow-2xl backdrop:bg-black/80 sm:p-7"
+        >
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <h4 id={`screenshots-title-${index}`} className="text-base font-semibold">{title} screenshots</h4>
+            <button
+              type="button"
+              onClick={() => screenshotsDialogRef.current?.close()}
+              className="rounded-full border border-[#303030] px-3 py-1.5 text-xs text-[#aaa] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#818cf8]"
+            >
+              Close
+            </button>
+          </div>
+          <div className="grid gap-5">
+            {screenshots.map((screenshot, screenshotIndex) => (
+              <Image
+                key={`${screenshot.src}-${screenshotIndex}`}
+                src={screenshot}
+                alt={`${title} screenshot ${screenshotIndex + 1}`}
+                width={screenshot.width}
+                height={screenshot.height}
+                unoptimized
+                className="h-auto max-h-[70vh] w-full rounded-lg border border-[#252525] object-contain"
+              />
+            ))}
+          </div>
+        </dialog>
+      )}
+    </motion.article>
   );
 }
 
@@ -229,21 +329,41 @@ const projects = [
     title: "SEO Monitoring Dashboard",
     description: ["Built a system to track website performance, health status, and SEO scores", "Integrated PageSpeed insights and technical audit metrics"],
     categories: ["seo", "automation"],
+    image: null,
+    screenshots: [],
+    internalTool: true,
+    githubUrl: null,
+    demoUrl: null,
   },
   {
     title: "WordPress Optimization",
     description: ["Improved site speed and Core Web Vitals, and implemented structured SEO strategies using Rank Math and Yoast"],
     categories: ["seo", "development"],
+    image: null,
+    screenshots: [],
+    internalTool: false,
+    githubUrl: null,
+    demoUrl: null,
   },
   {
     title: "Link Building Campaigns",
     description: ["Executed outreach campaigns to increase domain authority, analyzed competitor backlink profiles, and replicated high-value opportunities"],
     categories: ["seo"],
+    image: null,
+    screenshots: [],
+    internalTool: false,
+    githubUrl: null,
+    demoUrl: null,
   },
   {
     title: "Email Marketing Dashboard",
     description: ["Built an automation-focused dashboard to track email campaign performance and surface key engagement metrics in one place"],
     categories: ["automation"],
+    image: emailDashboardImage,
+    screenshots: [emailDashboardImage, emailDashboardDetailImage],
+    internalTool: true,
+    githubUrl: null,
+    demoUrl: null,
   },
 ];
 
@@ -402,7 +522,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {filteredProjects.map((p, i) => (
-              <ProjectCard key={p.title} title={p.title} description={p.description} categories={p.categories} index={i} />
+              <ProjectCard key={p.title} {...p} index={i} />
             ))}
           </div>
         </div>

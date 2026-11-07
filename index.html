@@ -116,14 +116,28 @@ h1 em{color:#c0392b;font-style:normal}
 .ptype{color:#888;font-size:11px}
 .ptitle{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;line-height:1.3;margin-bottom:11px}
 .pdesc{color:#bcbcb9;font-size:13px;line-height:1.75}
-.plink{display:none}
 .ptags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:18px;border-top:1px solid #202020;list-style:none}
 .ptags li{border:1px solid #30302e;border-radius:3px;padding:5px 8px;color:#aaa;font-size:10px;line-height:1.2}
+.project-preview{position:relative;display:grid;aspect-ratio:16/9;place-items:center;overflow:hidden;border-bottom:1px solid #202020;background:linear-gradient(135deg,#14141c,#090909);color:#666;text-align:center;font-size:12px}
+.project-preview img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.internal-badge{display:inline-flex;align-items:center;width:max-content;margin:-2px 0 12px;padding:5px 9px;border:1px solid rgba(99,102,241,.28);border-radius:999px;background:rgba(99,102,241,.1);color:#a5a6f6;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
 .project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
-.project-link{display:flex;min-width:0;min-height:44px;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;padding:8px 10px;border:1px solid #252525;border-radius:6px;background:#0d0d0d;color:#858585;font:500 11px 'DM Sans',sans-serif;text-align:left}
-.project-link:disabled{cursor:not-allowed;opacity:.8}
-.project-link-label{line-height:1.35}
-.project-link-status{color:#555;font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em}
+.project-link{display:flex;min-width:0;min-height:44px;align-items:center;justify-content:center;padding:8px 10px;border:1px solid #30302e;border-radius:6px;background:#0d0d0d;color:#ddd;font:500 11px 'DM Sans',sans-serif;text-align:center;text-decoration:none;transition:border-color .2s,color .2s}
+.project-link:hover,.project-link:focus-visible{border-color:rgba(99,102,241,.55);color:#fff}
+.project-link:focus-visible{outline:2px solid #818cf8;outline-offset:2px}
+.project-link[aria-disabled="true"]{border-color:#242424;color:#555;cursor:not-allowed}
+.project-link:disabled{border-color:#242424;color:#555;cursor:not-allowed}
+.screenshot-dialog{width:min(1000px,calc(100% - 32px));max-width:none;max-height:90vh;margin:auto;padding:20px;border:1px solid #303030;border-radius:16px;background:#090909;color:#fff;box-shadow:0 24px 80px rgba(0,0,0,.8)}
+.screenshot-dialog::backdrop{background:rgba(0,0,0,.82);backdrop-filter:blur(4px)}
+.screenshot-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.screenshot-dialog-title{font-family:'Playfair Display',serif;font-size:20px}
+.screenshot-dialog-close{border:1px solid #303030;border-radius:999px;padding:7px 12px;background:#111;color:#aaa;font:500 11px 'DM Sans',sans-serif;cursor:pointer}
+.screenshot-dialog-close:hover,.screenshot-dialog-close:focus-visible{border-color:#70423d;color:#fff}
+.screenshot-dialog-close:focus-visible{outline:2px solid #818cf8;outline-offset:2px}
+.screenshot-gallery{display:grid;gap:16px;max-height:calc(90vh - 100px);overflow:auto}
+.screenshot-gallery figure{margin:0}
+.screenshot-gallery img{display:block;width:100%;height:auto;max-height:72vh;object-fit:contain;border:1px solid #252525;border-radius:8px}
+.screenshot-gallery figcaption{margin-top:7px;color:#777;font-size:11px}
 
 /* ── APPROACH ── */
 .agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
@@ -388,56 +402,81 @@ h1 em{color:#c0392b;font-style:normal}
     <p class="result-count" aria-live="polite"><span id="visible-count">4</span> PROJECTS</p>
   </div>
   <div class="pgrid">
-    <article class="pcard" data-categories="seo automation">
+    <article class="pcard" data-categories="seo automation" data-image="" data-github-url="" data-demo-url="" data-internal="true">
+      <div class="project-preview" role="img" aria-label="SEO Monitoring Dashboard screenshot coming soon">Project screenshot coming soon</div>
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 01</span><span class="ptype">Analytics</span></div>
+        <span class="internal-badge">Internal Tool</span>
         <h3 class="ptitle">SEO Monitoring Dashboard</h3>
         <p class="pdesc">Engineered an automated monitoring system integrating PageSpeed Insights and technical audit metrics, giving real-time visibility into site health.</p>
         <ul class="ptags"><li>SEO</li><li>Analytics</li><li>Automation</li></ul>
         <div class="project-links" aria-label="Project links">
-          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
-          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+          <span class="project-link" aria-disabled="true">View Code · Coming soon</span>
+          <button class="project-link" type="button" disabled>View Screenshots · Coming soon</button>
         </div>
       </div>
     </article>
-    <article class="pcard" data-categories="seo development">
+    <article class="pcard" data-categories="seo development" data-image="" data-github-url="" data-demo-url="">
+      <div class="project-preview" role="img" aria-label="WordPress Optimization screenshot coming soon">Project screenshot coming soon</div>
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 02</span><span class="ptype">Web development</span></div>
         <h3 class="ptitle">WordPress Optimization</h3>
         <p class="pdesc">Optimized WordPress site speed and Core Web Vitals (improving LCP/CLS scores) while deploying structured schema and Rank Math SEO strategies.</p>
         <ul class="ptags"><li>WordPress</li><li>Performance</li><li>SEO</li></ul>
         <div class="project-links" aria-label="Project links">
-          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
-          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+          <span class="project-link" aria-disabled="true">View Code · Coming soon</span>
+          <span class="project-link" aria-disabled="true">Watch Demo / Live · Coming soon</span>
         </div>
       </div>
     </article>
-    <article class="pcard" data-categories="seo">
+    <article class="pcard" data-categories="seo" data-image="" data-github-url="" data-demo-url="">
+      <div class="project-preview" role="img" aria-label="Link Building Campaigns screenshot coming soon">Project screenshot coming soon</div>
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 03</span><span class="ptype">Campaign</span></div>
         <h3 class="ptitle">Link Building Campaigns</h3>
         <p class="pdesc">Executed targeted outreach campaigns and competitor backlink analysis to acquire high-authority backlinks and boost domain rank.</p>
         <ul class="ptags"><li>Outreach</li><li>Research</li><li>SEO</li></ul>
         <div class="project-links" aria-label="Project links">
-          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
-          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+          <span class="project-link" aria-disabled="true">View Code · Coming soon</span>
+          <span class="project-link" aria-disabled="true">Watch Demo / Live · Coming soon</span>
         </div>
       </div>
     </article>
-    <article class="pcard" data-categories="automation">
+    <article class="pcard" data-categories="automation" data-image="images/email_marketing.png" data-github-url="" data-demo-url="" data-internal="true">
+      <div class="project-preview">
+        <img src="images/email_marketing.png" alt="Email marketing dashboard analytics interface" width="1899" height="1015" loading="lazy">
+      </div>
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 04</span><span class="ptype">Automation</span></div>
+        <span class="internal-badge">Internal Tool</span>
         <h3 class="ptitle">Email Marketing Dashboard</h3>
         <p class="pdesc">Built an automated analytics dashboard to centralize campaign metrics and track subscriber engagement in real time.</p>
         <ul class="ptags"><li>Email Marketing</li><li>Dashboard</li><li>Automation</li></ul>
         <div class="project-links" aria-label="Project links">
-          <button class="project-link" type="button" disabled><span class="project-link-label">View Demo / Video</span><span class="project-link-status">Coming soon</span></button>
-          <button class="project-link" type="button" disabled><span class="project-link-label">Live Project / GitHub Repo</span><span class="project-link-status">Coming soon</span></button>
+          <span class="project-link" aria-disabled="true">View Code · Coming soon</span>
+          <button class="project-link" type="button" data-open-screenshots aria-haspopup="dialog" aria-controls="email-dashboard-screenshots">View Screenshots</button>
         </div>
       </div>
     </article>
   </div>
 </div>
+
+<dialog class="screenshot-dialog" id="email-dashboard-screenshots" aria-labelledby="email-dashboard-screenshots-title">
+  <div class="screenshot-dialog-header">
+    <h3 class="screenshot-dialog-title" id="email-dashboard-screenshots-title">Email Marketing Dashboard Screenshots</h3>
+    <button class="screenshot-dialog-close" type="button">Close</button>
+  </div>
+  <div class="screenshot-gallery">
+    <figure>
+      <img src="images/email_marketing.png" alt="Email marketing dashboard analytics overview" width="1899" height="1015">
+      <figcaption>Analytics overview</figcaption>
+    </figure>
+    <figure>
+      <img src="images/email-marketing.png" alt="Email marketing campaign performance dashboard" width="1899" height="1056">
+      <figcaption>Campaign performance</figcaption>
+    </figure>
+  </div>
+</dialog>
 
 <!-- ── APPROACH ── -->
 <div class="divider-f"></div>
@@ -520,6 +559,17 @@ filterButtons.forEach(function(button){
     });
     visibleCount.textContent=String(count);
   });
+});
+
+var screenshotDialog=document.querySelector('#email-dashboard-screenshots');
+document.querySelectorAll('[data-open-screenshots]').forEach(function(button){
+  button.addEventListener('click',function(){screenshotDialog.showModal();});
+});
+screenshotDialog.querySelector('.screenshot-dialog-close').addEventListener('click',function(){
+  screenshotDialog.close();
+});
+screenshotDialog.addEventListener('click',function(event){
+  if(event.target===screenshotDialog)screenshotDialog.close();
 });
 
 var contactDialog=document.querySelector('#contact-dialog');

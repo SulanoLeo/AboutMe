@@ -30,12 +30,12 @@ This is a relative path — works on both root and project GitHub Pages.
 
 ## Project Covers
 
-Put project media in `images/projects/`. In `projects.html`, set each cover button's `data-media-src` to its file path. Keep `data-media-type="image"` for images, or change it to `data-media-type="video"` for a video. Videos can also use an optional `data-media-poster` image path. Clicking a cover opens the image enlarged or plays the video in a player.
+Project cards are rendered in `index.html` for GitHub Pages and in `page.tsx` for the Next.js version. Add each project's screenshot, repository, and demo URLs to its project card/data entry. Internal projects can show an `Internal Tool` badge and open approved screenshots in the built-in lightbox without exposing a live system. Use relative paths for GitHub Pages media and add `target="_blank"` with `rel="noopener noreferrer"` to external links.
 
 ```html
-<button class="media-placeholder" data-media-type="image" data-media-src="images/projects/dashboard.webp">
+<article data-image="images/projects/dashboard.webp"
+         data-github-url="https://github.com/your-account/project"
+         data-demo-url="https://example.com/demo">
 ```
 
-```html
-<button class="media-placeholder" data-media-type="video" data-media-src="images/projects/wordpress-demo.mp4" data-media-poster="images/projects/wordpress-poster.webp">
-```
+Use a descriptive `alt` attribute for project screenshots. When a screenshot or link is not available, keep the card's “coming soon” placeholder instead of using a made-up URL. Only publish screenshots or walkthroughs approved for public viewing; do not link internal videos until their data has been blurred. For Next.js, `page.tsx` uses `next/image` with static image imports; place imported image assets in the repository and keep them available to the build.
