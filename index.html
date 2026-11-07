@@ -39,7 +39,9 @@ h1 em{color:#c0392b;font-style:normal}
 .roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;opacity:0;animation:fadeUp .7s .25s ease forwards}
 .role-pill{padding:7px 20px;border-radius:100px;font-size:13px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);background:rgba(0,0,0,.25);backdrop-filter:blur(6px)}
 .intro{max-width:510px;color:rgba(255,255,255,.78);font-size:15px;line-height:1.85;margin-bottom:14px;opacity:0;animation:fadeUp .7s .35s ease forwards}
-.intro2{max-width:510px;color:rgba(255,255,255,.68);font-size:14px;line-height:1.85;opacity:0;animation:fadeUp .7s .44s ease forwards}
+.hero-cta{display:inline-flex;align-items:center;margin-top:24px;padding:11px 18px;border:1px solid rgba(192,57,43,.55);border-radius:100px;background:rgba(139,0,0,.12);color:#f0aaa3;font-size:12px;font-weight:500;text-decoration:none;transition:background .2s,border-color .2s,color .2s}
+.hero-cta:hover,.hero-cta:focus-visible{border-color:#c0392b;background:rgba(139,0,0,.24);color:#fff}
+.hero-cta:focus-visible{outline:2px solid #c0392b;outline-offset:3px}
 .scroll-hint{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:54px;opacity:0;animation:fadeUp .7s .6s ease forwards}
 .scroll-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.18)}
 .scroll-line{width:1px;height:38px;background:linear-gradient(rgba(255,255,255,.15),transparent);animation:scrollPulse 1.9s ease-in-out infinite}
@@ -112,7 +114,7 @@ h1 em{color:#c0392b;font-style:normal}
 .pmeta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
 .pnum{color:#c0392b;font:10px 'DM Mono',monospace;letter-spacing:.15em;text-transform:uppercase}
 .ptype{color:#888;font-size:11px}
-.ptitle{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin-bottom:11px}
+.ptitle{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;line-height:1.3;margin-bottom:11px}
 .pdesc{color:#bcbcb9;font-size:13px;line-height:1.75}
 .plink{display:none}
 .ptags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:18px;border-top:1px solid #202020;list-style:none}
@@ -156,7 +158,7 @@ h1 em{color:#c0392b;font-style:normal}
   .pgrid{grid-template-columns:1fr}
   .roles{gap:6px}
   .role-pill{font-size:12px;padding:6px 14px}
-  .intro,.intro2{max-width:100%}
+  .intro{max-width:100%}
   /* tooltip reposition on small screens */
 
 }
@@ -175,7 +177,7 @@ h1 em{color:#c0392b;font-style:normal}
   .cards{grid-template-columns:1fr}
   .agrid{grid-template-columns:repeat(2,1fr);gap:10px}
   .pgrid{grid-template-columns:1fr}
-  .pcard{padding:24px}
+  .pcontent{padding:20px}
   .ptitle{font-size:17px}
   .acard{padding:18px}
   .alabel{font-size:13px}
@@ -184,7 +186,8 @@ h1 em{color:#c0392b;font-style:normal}
   .sec-title{font-size:clamp(20px,6vw,28px)}
 
   /* Stack scroll hint */
-  .scroll-hint{margin-top:32px}
+  .hero-cta{margin-top:18px}
+  .scroll-hint{margin-top:24px}
 }
 
 /* Very small 360px */
@@ -217,7 +220,7 @@ h1 em{color:#c0392b;font-style:normal}
       <span class="role-pill">AI Automation Engineer</span>
     </div>
     <p class="intro">I’m a hybrid digital professional who bridges SEO strategy, modern web development, and AI automation. I build high-performing websites, fix technical bottlenecks, and engineer workflows that turn traffic into measurable business growth.</p>
-    <p class="intro2">With hands-on experience across On-Page, Off-Page, and Technical SEO, combined with development skills, I bridge the gap between marketing and engineering — ensuring strategies are not just planned, but properly executed.</p>
+    <a class="hero-cta" href="#projects">Explore projects</a>
     <div class="scroll-hint"><span class="scroll-label">Scroll</span><div class="scroll-line"></div></div>
   </div>
 </section>
@@ -235,27 +238,27 @@ h1 em{color:#c0392b;font-style:normal}
     <div class="cards">
       <div class="card">
         <div class="ci"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-        <div class="ct">Search Engine Optimization</div>
+        <h3 class="ct">Search Engine Optimization</h3>
         <ul><li>On-Page SEO — content optimization, keyword strategy, internal linking</li><li>Off-Page SEO — link building, outreach, authority growth</li><li>Technical SEO — site audits, crawlability, indexing, Core Web Vitals</li><li>Website health monitoring and SEO scoring</li></ul>
       </div>
       <div class="card">
         <div class="ci"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <div class="ct">Web Development</div>
+        <h3 class="ct">Web Development</h3>
         <ul><li>Junior / Assistant Web Developer</li><li>WordPress development and customization</li><li>Page builder optimization (performance + UX)</li><li>Proficient with JavaScript &amp; PHP — leveraging AI tools (Claude/ChatGPT) to accelerate development and problem-solving</li><li>Google Apps Script for Google Sheets automation</li></ul>
       </div>
       <div class="card">
         <div class="ci"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-        <div class="ct">Link Building</div>
+        <h3 class="ct">Link Building</h3>
         <ul><li>Outreach strategy and execution</li><li>Backlink acquisition and tracking</li><li>Competitor backlink analysis</li><li>Blog posting and article submission</li><li>Directory submissions</li></ul>
       </div>
       <div class="card">
         <div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <div class="ct">AI Automation</div>
+        <h3 class="ct">AI Automation</h3>
         <ul><li>Workflow automation using AI tools</li><li>Process optimization for marketing and operations</li><li>Building internal tools for SEO monitoring &amp; dashboards</li></ul>
       </div>
       <div class="card">
         <div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <div class="ct">Web Design</div>
+        <h3 class="ct">Web Design</h3>
         <ul><li>Minimalist Web Design approach</li><li>Conversion-focused UI/UX</li><li>Performance-first design thinking</li></ul>
       </div>
     </div>
@@ -342,7 +345,7 @@ h1 em{color:#c0392b;font-style:normal}
 
 <!-- ── PROJECTS ── -->
 <div class="divider-f"></div>
-<div class="wrap">
+<div class="wrap" id="projects">
   <p class="sec-label">Work</p>
   <h2 class="sec-title">Projects</h2>
   <div class="sec-div"></div>
@@ -359,7 +362,7 @@ h1 em{color:#c0392b;font-style:normal}
     <article class="pcard" data-categories="seo automation">
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 01</span><span class="ptype">Analytics</span></div>
-        <div class="ptitle">SEO Monitoring Dashboard</div>
+        <h3 class="ptitle">SEO Monitoring Dashboard</h3>
         <p class="pdesc">Engineered an automated monitoring system integrating PageSpeed Insights and technical audit metrics, giving real-time visibility into site health.</p>
         <ul class="ptags"><li>SEO</li><li>Analytics</li><li>Automation</li></ul>
       </div>
@@ -367,7 +370,7 @@ h1 em{color:#c0392b;font-style:normal}
     <article class="pcard" data-categories="seo development">
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 02</span><span class="ptype">Web development</span></div>
-        <div class="ptitle">WordPress Optimization</div>
+        <h3 class="ptitle">WordPress Optimization</h3>
         <p class="pdesc">Optimized WordPress site speed and Core Web Vitals (improving LCP/CLS scores) while deploying structured schema and Rank Math SEO strategies.</p>
         <ul class="ptags"><li>WordPress</li><li>Performance</li><li>SEO</li></ul>
       </div>
@@ -375,7 +378,7 @@ h1 em{color:#c0392b;font-style:normal}
     <article class="pcard" data-categories="seo">
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 03</span><span class="ptype">Campaign</span></div>
-        <div class="ptitle">Link Building Campaigns</div>
+        <h3 class="ptitle">Link Building Campaigns</h3>
         <p class="pdesc">Executed targeted outreach campaigns and competitor backlink analysis to acquire high-authority backlinks and boost domain rank.</p>
         <ul class="ptags"><li>Outreach</li><li>Research</li><li>SEO</li></ul>
       </div>
@@ -383,7 +386,7 @@ h1 em{color:#c0392b;font-style:normal}
     <article class="pcard" data-categories="automation">
       <div class="pcontent">
         <div class="pmeta"><span class="pnum">Project 04</span><span class="ptype">Automation</span></div>
-        <div class="ptitle">Email Marketing Dashboard</div>
+        <h3 class="ptitle">Email Marketing Dashboard</h3>
         <p class="pdesc">Built an automated analytics dashboard to centralize campaign metrics and track subscriber engagement in real time.</p>
         <ul class="ptags"><li>Email Marketing</li><li>Dashboard</li><li>Automation</li></ul>
       </div>
